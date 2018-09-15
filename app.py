@@ -18,17 +18,17 @@ RIGHT_ERR_EDGE = 1.96
 LEFT_ERR_EDGE = -1 * RIGHT_ERR_EDGE
 point_count = 10000
 print('enter the desired result (it can be errors, probability_H0_exceed_H1 or probability_H0_not_exceed_H1)')
-MODE = str(input()) # can take value: errors, probability_H0_exceed_H1, probability_H0_not_exceed_H1
+MODE = str(input())  # can take value: errors, probability_H0_exceed_H1, probability_H0_not_exceed_H1
 
 # Mathematiс block
 # Making transformation, determining coordinates, describe the functions for drawing, calculating
 # Сarry out z transformation
 
 
-def z_deter(value, edge, error_edge, MODE):
-    if MODE == 'probability_H0_exceed_H1' or MODE == 'probability_H0_not_exceed_H1':
+def z_deter(value, edge, error_edge, mode):
+    if mode == 'probability_H0_exceed_H1' or mode == 'probability_H0_not_exceed_H1':
         value = (meanValueOfTheGroup - meanValueOfTheHypothesis) / mean_of_global_deviation
-    elif MODE == 'errors':
+    elif mode == 'errors':
         value = (meanValueOfTheGroup - meanValueOfTheHypothesis) / (meanDeviationGroup / np.sqrt(numberOfObjectsGroup))
     else:
         print('Not enough input data')
@@ -43,7 +43,7 @@ def z_deter(value, edge, error_edge, MODE):
 
 
 z = z_deter(z, RIGHT_EDGE, RIGHT_ERR_EDGE, MODE)
-left_z = z_deter(left_z,LEFT_EDGE, LEFT_ERR_EDGE, MODE)
+left_z = z_deter(left_z, LEFT_EDGE, LEFT_ERR_EDGE, MODE)
 
 # Section for determining the coordinates
 fig_size = (10, 7)
@@ -181,7 +181,6 @@ zones_list = calculate_zones({
     'RIGHT_EDGE': RIGHT_EDGE,
     'RIGHT_ERR_EDGE': RIGHT_ERR_EDGE,
 })
-
 
 # Drawing a Graph
 for i in range(len(zones_list)):
